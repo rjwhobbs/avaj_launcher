@@ -22,7 +22,7 @@ public class Main {
           }
         }
 
-        heli = AircraftFactory.newAircraft("Joe");
+        heli = AircraftFactory.newAircraft("Helicopter", "H1");
         heli.registerTower();
         heli.updateConditions();
       } catch (FileNotFoundException e) {
