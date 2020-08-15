@@ -2,10 +2,12 @@ package com.rhobbs.simulator.aircraft;
 
 import com.rhobbs.simulator.aircraft.Flyable;
 
-public class Helicopter implements Flyable {
+public class Helicopter extends Aircraft implements Flyable {
 
   Helicopter(String name) {
-    System.out.println("Heli name con called: " + name);
+//    Aircraft("Test", 456);
+    super(99);
+    System.out.println("Heli name con called: " + name + " " + this.id);
   }
   @Override
   public void updateConditions() {
