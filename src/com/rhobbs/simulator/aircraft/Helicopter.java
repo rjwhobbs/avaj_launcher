@@ -5,9 +5,9 @@ import com.rhobbs.simulator.aircraft.Flyable;
 public class Helicopter extends Aircraft implements Flyable {
 
   Helicopter(String name) {
-//    Aircraft("Test", 456);
-    super(99);
-    System.out.println("Heli name con called: " + name + " " + this.id);
+    // Java can only inherit from one class, no diamonds here
+    super(name);
+    System.out.println("Heli name con called: " + this.name + "\nid: " + this.id);
   }
   @Override
   public void updateConditions() {

@@ -1,9 +1,10 @@
 package com.rhobbs.simulator.aircraft;
 
-public class JetPlane implements Flyable {
+public class JetPlane extends Aircraft implements Flyable {
 
   JetPlane(String name) {
-    System.out.println("JetPlane name con called: " + name);
+    super(name);
+    System.out.println("JetPlane name con called: "  + this.name + "\nid: " + this.id);
   }
 
   @Override

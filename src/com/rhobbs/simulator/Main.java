@@ -25,7 +25,7 @@ public class Main {
           }
         }
 
-        String[] test = {"Helicopter H1", "Balloon B1", "JetPlane J1"};
+        String[] test = {"Helicopter H1", "Balloon B1", "JetPlane J1", "Helicopter H2"};
         for (int i = 0; i < test.length; i++) {
           Flyable flyable = AircraftFactory.newAircraft(
                   test[i].split(" ")[0],

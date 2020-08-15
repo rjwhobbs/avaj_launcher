@@ -2,11 +2,17 @@ package com.rhobbs.simulator.aircraft;
 
 public abstract class Aircraft {
   protected long id;
-//  protected Aircraft() {
-//    System.out.println("Def called ");
-//  }
-  protected Aircraft(long id) {
+  protected String name;
+
+  private static long idCounter = 0;
+
+  protected Aircraft(String name) {
     System.out.println("Aircraft con called");
-    this.id = id;
+    this.name = name;
+    this.id = nextId();
+  }
+
+  private long nextId() {
+    return Aircraft.idCounter += 1;
   }
 }

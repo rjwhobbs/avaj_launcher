@@ -1,9 +1,10 @@
 package com.rhobbs.simulator.aircraft;
 
-public class Balloon implements Flyable {
+public class Balloon extends Aircraft implements Flyable {
 
   Balloon(String name) {
-    System.out.println("Balloon name con called: " + name);
+    super(name);
+    System.out.println("Balloon name con called: " + this.name + "\nid: " + this.id);
   }
   @Override
   public void updateConditions() {
