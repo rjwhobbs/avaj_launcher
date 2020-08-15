@@ -6,9 +6,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-  public static Flyable heli;
+  public static List<Flyable> flyables = new ArrayList<>();
 
     public static void main(String[] args) /* throws InterruptedException */ {
       try {
@@ -22,9 +24,20 @@ public class Main {
           }
         }
 
-        heli = AircraftFactory.newAircraft("Helicopter", "H1");
-        heli.registerTower();
-        heli.updateConditions();
+        String[] test = {"Helicopter H1", "Balloon B1", "JetPlane J1"};
+        for (int i = 0; i < test.length; i++) {
+          Flyable flyable = AircraftFactory.newAircraft(
+                  test[i].split(" ")[0],
+                  test[i].split(" ")[1]
+          );
+          flyables.add(flyable);
+        }
+
+        for (Flyable flyable: flyables) {
+          flyable.updateConditions();
+          flyable.registerTower();
+        }
+
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
       } catch (IOException e) {
