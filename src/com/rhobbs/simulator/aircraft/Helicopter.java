@@ -1,7 +1,5 @@
 package com.rhobbs.simulator.aircraft;
 
-import com.rhobbs.simulator.aircraft.Flyable;
-
 public class Helicopter extends Aircraft implements Flyable {
 
   Helicopter(String name) {
