@@ -1,9 +1,11 @@
 package com.rhobbs.simulator.aircraft;
 
+import com.rhobbs.simulator.weather.Coordinates;
+
 public class Balloon extends Aircraft implements Flyable {
 
-  Balloon(String name) {
-    super(name);
+  Balloon(String name, Coordinates coordinates) {
+    super(name, coordinates);
     System.out.println("Balloon name con called: " + this.name + "\nid: " + this.id);
   }
   @Override

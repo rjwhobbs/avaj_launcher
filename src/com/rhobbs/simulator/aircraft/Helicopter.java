@@ -1,10 +1,12 @@
 package com.rhobbs.simulator.aircraft;
 
+import com.rhobbs.simulator.weather.Coordinates;
+
 public class Helicopter extends Aircraft implements Flyable {
 
-  Helicopter(String name) {
+  Helicopter(String name, Coordinates coordinates) {
     // Java can only inherit from one class, no diamonds here
-    super(name);
+    super(name, coordinates);
     System.out.println("Heli name con called: " + this.name + "\nid: " + this.id);
   }
   @Override

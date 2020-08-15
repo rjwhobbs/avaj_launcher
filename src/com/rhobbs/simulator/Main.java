@@ -2,7 +2,6 @@ package com.rhobbs.simulator;
 
 import com.rhobbs.simulator.aircraft.AircraftFactory;
 import com.rhobbs.simulator.aircraft.Flyable;
-import com.rhobbs.weather.Weather;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,7 +29,10 @@ public class Main {
         for (int i = 0; i < test.length; i++) {
           Flyable flyable = AircraftFactory.newAircraft(
                   test[i].split(" ")[0],
-                  test[i].split(" ")[1]
+                  test[i].split(" ")[1],
+                  33,
+                  44,
+                  55
           );
           flyables.add(flyable);
         }
