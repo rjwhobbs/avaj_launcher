@@ -10,17 +10,35 @@ public abstract class Tower {
   private List<Flyable> observers = new ArrayList<>();
 
   public void register(Flyable flyable) {
+    System.out.println(flyable.getName()+" registered with tower");
     observers.add(flyable);
   }
 
   public void unregister(Flyable flyable) {
-    observers.remove(flyable);
+    this.observers.remove(flyable);
+    System.out.println(flyable.getName()+" unregistered "+observers.size());
   }
 
   protected void conditionsChanged() {
-    for (Flyable observer: observers) {
-      observer.updateConditions();
+    int i = 0;
+    int len = observers.size();
+    while (i < len) {
+      observers.get(i).updateConditions();
+      System.out.println("Name: "+ observers.get(i).getName()
+              +" Update called: Lo: "
+              + observers.get(i).getCoordinates().getLongitude()
+              +" La: "+ observers.get(i).getCoordinates().getLatitude()
+              +" H: "+ observers.get(i).getCoordinates().getHeight()+
+              "\n-----------------------------------------"
+      );
+      if (observers.get(i).getCoordinates().getHeight() <= 0) {
+        unregister(observers.get(i));
+        i--;
+        len--;
+      }
+      i++;
     }
+
   }
 
 

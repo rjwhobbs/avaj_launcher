@@ -2,7 +2,6 @@ package com.rhobbs.simulator;
 
 import com.rhobbs.simulator.aircraft.AircraftFactory;
 import com.rhobbs.simulator.aircraft.Flyable;
-import com.rhobbs.simulator.weather.CoordinatesFactory;
 import com.rhobbs.simulator.weather.WeatherProvider;
 
 import java.io.BufferedReader;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class Main {
   public static List<Flyable> flyables = new ArrayList<>();
-  public static WeatherTower wt = new WeatherTower();
+  public static WeatherTower weatherTower = new WeatherTower();
 
     public static void main(String[] args) /* throws InterruptedException */ {
       try {
@@ -23,9 +22,6 @@ public class Main {
 
         if (line != null) {
           String[] strArr = line.split(" ");
-//          for (int i = 0; i < strArr.length; i++) {
-//            System.out.println(strArr[i]);
-//          }
         }
 
         while ((line = reader.readLine()) != null) {
@@ -42,13 +38,16 @@ public class Main {
         WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
 
         for (Flyable flyable: flyables) {
-//          flyable.updateConditions();
-//          flyable.registerTower();
-//          System.out.println(weatherProvider.getCurrentWeather(flyable.getCoordinates()));
-          wt.register(flyable);
+          flyable.registerTower(weatherTower);
         }
 
-        wt.changeWeather();
+        for (int i = 0; i < 5; i++) {
+          weatherTower.changeWeather();
+        }
+        System.out.println("CXCXCXCXCXCXCXCXCXCXCXCXCXCCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXC");
+        for (int i = 0; i < 5; i++) {
+          weatherTower.changeWeather();
+        }
 
 
       } catch (FileNotFoundException e) {
