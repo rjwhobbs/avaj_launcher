@@ -2,6 +2,7 @@ package com.rhobbs.simulator;
 
 import com.rhobbs.simulator.aircraft.AircraftFactory;
 import com.rhobbs.simulator.aircraft.Flyable;
+import com.rhobbs.simulator.weather.WeatherProvider;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -41,7 +42,11 @@ public class Main {
         for (Flyable flyable: flyables) {
           flyable.updateConditions();
           flyable.registerTower();
+//          flyable
         }
+        WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
+        System.out.println(weatherProvider.getCurrentWeather(2, 3, 20));
+
 
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
