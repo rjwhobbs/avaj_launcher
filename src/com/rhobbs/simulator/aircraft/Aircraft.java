@@ -16,14 +16,6 @@ public abstract class Aircraft {
     this.id = nextId();
   }
 
-  public void showCoords() {
-    System.out.println(
-            this.coordinates.getLongitude() + " " +
-            this.coordinates.getLatitude() + " " +
-            this.coordinates.getHeight()
-    );
-  }
-
   private long nextId() {
     return Aircraft.idCounter += 1;
   }

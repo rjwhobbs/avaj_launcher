@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Main {
   public static List<Flyable> flyables = new ArrayList<>();
+  public static WeatherTower wt = new WeatherTower();
 
     public static void main(String[] args) /* throws InterruptedException */ {
       try {
@@ -22,9 +23,9 @@ public class Main {
 
         if (line != null) {
           String[] strArr = line.split(" ");
-          for (int i = 0; i < strArr.length; i++) {
-            System.out.println(strArr[i]);
-          }
+//          for (int i = 0; i < strArr.length; i++) {
+//            System.out.println(strArr[i]);
+//          }
         }
 
         while ((line = reader.readLine()) != null) {
@@ -38,13 +39,16 @@ public class Main {
           flyables.add(flyable);
         }
 
-        for (Flyable flyable: flyables) {
-          flyable.updateConditions();
-          flyable.registerTower();
-//          flyable
-        }
         WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
-        System.out.println(weatherProvider.getCurrentWeather(CoordinatesFactory.newCoordinates(2,3,20)));
+
+        for (Flyable flyable: flyables) {
+//          flyable.updateConditions();
+//          flyable.registerTower();
+//          System.out.println(weatherProvider.getCurrentWeather(flyable.getCoordinates()));
+          wt.register(flyable);
+        }
+
+        wt.changeWeather();
 
 
       } catch (FileNotFoundException e) {
