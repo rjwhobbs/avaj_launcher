@@ -8,6 +8,7 @@ public class Helicopter extends Aircraft implements Flyable {
     // Java can only inherit from one class, no diamonds here
     super(name, coordinates);
     System.out.println("Heli name con called: " + this.name + "\nid: " + this.id);
+    super.showCoords();
   }
   @Override
   public void updateConditions() {

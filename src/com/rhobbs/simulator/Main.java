@@ -2,6 +2,7 @@ package com.rhobbs.simulator;
 
 import com.rhobbs.simulator.aircraft.AircraftFactory;
 import com.rhobbs.simulator.aircraft.Flyable;
+import com.rhobbs.simulator.weather.CoordinatesFactory;
 import com.rhobbs.simulator.weather.WeatherProvider;
 
 import java.io.BufferedReader;
@@ -26,18 +27,16 @@ public class Main {
           }
         }
 
-        String[] test = {"Helicopter H1", "Balloon B1", "JetPlane J1", "Helicopter H2"};
-        for (int i = 0; i < test.length; i++) {
+        while ((line = reader.readLine()) != null) {
           Flyable flyable = AircraftFactory.newAircraft(
-                  test[i].split(" ")[0],
-                  test[i].split(" ")[1],
-                  33,
-                  44,
-                  55
+                  line.split(" ")[0],
+                  line.split(" ")[1],
+                  Integer.parseInt(line.split(" ")[2]),
+                  Integer.parseInt(line.split(" ")[3]),
+                  Integer.parseInt(line.split(" ")[4])
           );
           flyables.add(flyable);
         }
-//        Weather w = new Weather();
 
         for (Flyable flyable: flyables) {
           flyable.updateConditions();
@@ -45,7 +44,7 @@ public class Main {
 //          flyable
         }
         WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
-        System.out.println(weatherProvider.getCurrentWeather(2, 3, 20));
+        System.out.println(weatherProvider.getCurrentWeather(CoordinatesFactory.newCoordinates(2,3,20)));
 
 
       } catch (FileNotFoundException e) {

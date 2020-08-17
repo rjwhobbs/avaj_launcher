@@ -24,24 +24,24 @@ public class WeatherProvider {
     return weatherProvider;
   }
 
-  public String getCurrentWeather(int lon, int lat, int height) {
+  public String getCurrentWeather(Coordinates coordinates) {
     int sun, rain, fog, snow;
     List<String> randArr = new ArrayList<>();
 
-    sun = getRandval(longMaxRange, longMaxRange - lon); // long
-    snow = getRandval(longMaxRange, lon);
-    rain = getRandval(longMaxRange, lon);
-    fog = getRandval(longMaxRange, lon);
+    sun = getRandval(longMaxRange, longMaxRange - coordinates.getLongitude()); // long
+    snow = getRandval(longMaxRange, coordinates.getLongitude());
+    rain = getRandval(longMaxRange, coordinates.getLongitude());
+    fog = getRandval(longMaxRange, coordinates.getLongitude());
 
-    sun = getRandval(latitudeMaxRange, latitudeMaxRange - lat);
-    rain = getRandval(latitudeMaxRange, latitudeMaxRange - lat);
-    snow = getRandval(latitudeMaxRange, lat);
-    fog = getRandval(latitudeMaxRange, lat);
+    sun += getRandval(latitudeMaxRange, latitudeMaxRange - coordinates.getLatitude());
+    rain += getRandval(latitudeMaxRange, latitudeMaxRange - coordinates.getLatitude());
+    snow += getRandval(latitudeMaxRange, coordinates.getLatitude());
+    fog += getRandval(latitudeMaxRange, coordinates.getLatitude());
 
-    sun = getRandval(heightMaxRange, height); // height
-    rain = getRandval(heightMaxRange, height);
-    snow = getRandval(heightMaxRange, heightMaxRange - height);
-    fog = getRandval(heightMaxRange, heightMaxRange - height);
+    sun += getRandval(heightMaxRange, coordinates.getHeight()); // height
+    rain += getRandval(heightMaxRange, coordinates.getHeight());
+    snow += getRandval(heightMaxRange, heightMaxRange - coordinates.getHeight());
+    fog += getRandval(heightMaxRange, heightMaxRange - coordinates.getHeight());
 
     System.out.println("Sn " +sun+" Sw "+snow+" R "+rain+" F "+fog);
 
