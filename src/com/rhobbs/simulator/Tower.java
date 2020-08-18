@@ -4,6 +4,7 @@ import com.rhobbs.simulator.aircraft.Flyable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public abstract class Tower {
 
@@ -36,6 +37,8 @@ public abstract class Tower {
         i--;
         len--;
       }
+//      Logger logger = Logger.getLogger("log");
+//      logger.info("This happened TTTTTTOOTOTOTOTOTOTOTO");
       i++;
     }
 
