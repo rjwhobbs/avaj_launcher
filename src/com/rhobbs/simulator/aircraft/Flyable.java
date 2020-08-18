@@ -9,4 +9,5 @@ public interface Flyable {
   public Coordinates getCoordinates();
   public long getId();
   public String getName();
+  public String getType();
 }

@@ -11,13 +11,20 @@ public abstract class Tower {
   private List<Flyable> observers = new ArrayList<>();
 
   public void register(Flyable flyable) {
-    System.out.println(flyable.getName()+" registered with tower");
+//    System.out.println(flyable.getName()+" registered with tower");
     observers.add(flyable);
+    Logger.getLogger(Main.logFile).info(
+            "Tower says: " + flyable.getType() + "#" + flyable.getName() +
+                    "(" + flyable.getId() + ") registered to weather tower."
+    );
   }
 
   public void unregister(Flyable flyable) {
-    this.observers.remove(flyable);
-    System.out.println(flyable.getName()+" unregistered "+observers.size());
+    observers.remove(flyable);
+    Logger.getLogger(Main.logFile).info(
+            "Tower says: " + flyable.getType() + "#" + flyable.getName() +
+                    "(" + flyable.getId() + ") unregistered from weather tower."
+    );
   }
 
   protected void conditionsChanged() {
@@ -37,8 +44,6 @@ public abstract class Tower {
         i--;
         len--;
       }
-//      Logger logger = Logger.getLogger("log");
-//      logger.info("This happened TTTTTTOOTOTOTOTOTOTOTO");
       i++;
     }
 

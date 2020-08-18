@@ -17,21 +17,20 @@ import java.util.logging.SimpleFormatter;
 public class Main {
   public static List<Flyable> flyables = new ArrayList<>();
   public static WeatherTower weatherTower = new WeatherTower();
+  public static String logFile = "simulation";
+  public static FileHandler fh;
 
-
-    public static void main(String[] args) /* throws InterruptedException */ {
+  public static void main(String[] args) /* throws InterruptedException */ {
       try {
-        System.setProperty("java.util.logging.SimpleFormatter.format",
-                "%5$s%n");
-        Logger logger = Logger.getLogger("log");
-        FileHandler fh = new FileHandler("/Users/RogerHobbs/IdeaProjects/Avaj-Launcher/simulation.txt");
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
+        Logger logger = Logger.getLogger(logFile);
+        fh = new FileHandler("./"+ logFile +".txt");
         logger.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();
         fh.setFormatter(formatter);
-        logger.info("words in file");
+
         BufferedReader reader = new BufferedReader(new FileReader(args[0]));
         String line = reader.readLine();
-
 
         if (line != null) {
           String[] strArr = line.split(" ");
@@ -54,21 +53,20 @@ public class Main {
           flyable.registerTower(weatherTower);
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
           weatherTower.changeWeather();
         }
 //        System.out.println("CXCXCXCXCXCXCXCXCXCXCXCXCXCCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXC");
 //        for (int i = 0; i < 5; i++) {
 //          weatherTower.changeWeather();
 //        }
-        logger.info("words in file");
-        fh.close();
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
       } catch (IOException e) {
         System.out.println("IO error on file");
       } finally {
-
+        System.out.println("Herere");
+        fh.close();
       }
     }
 }
