@@ -55,34 +55,33 @@ public class Main {
           String[] strArr = line.split(" ");
         }
 
-        String[] arr;
-        while  ((line = reader.readLine()) != null) {
-          arr = validateInput(line);
-          System.out.println(arr[0] + arr[1] + arr[2] + arr[3] + arr[4]);
-        }
-//        return ;
+//        while  ((line = reader.readLine()) != null) {
+//          arr = validateInput(line);
+//          System.out.println(arr[0] + arr[1] + arr[2] + arr[3] + arr[4]);
+//        }
 
-//        while ((line = reader.readLine()) != null) {
-//          Flyable flyable = AircraftFactory.newAircraft(
-//                  line.split(" ")[0],
-//                  line.split(" ")[1],
-//                  Integer.parseInt(line.split(" ")[2]),
-//                  Integer.parseInt(line.split(" ")[3]),
-//                  Integer.parseInt(line.split(" ")[4])
-//          );
-//          flyables.add(flyable);
-//        }
-//
-//        WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
-//
-//        for (Flyable flyable: flyables) {
-//          flyable.registerTower(weatherTower);
-//        }
-//
-//        for (int i = 0; i < 15; i++) {
-//          weatherTower.changeWeather();
-//        }
-//        System.out.println("CXCXCXCXCXCXCXCXCXCXCXCXCXCCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXC");
+        String[] arr;
+        while ((line = reader.readLine()) != null) {
+          arr = validateInput(line);
+          Flyable flyable = AircraftFactory.newAircraft(
+                  arr[0],
+                  arr[1],
+                  Integer.parseInt(arr[2]),
+                  Integer.parseInt(arr[3]),
+                  Integer.parseInt(arr[4])
+          );
+          flyables.add(flyable);
+        }
+
+        WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
+
+        for (Flyable flyable: flyables) {
+          flyable.registerTower(weatherTower);
+        }
+
+        for (int i = 0; i < 15; i++) {
+          weatherTower.changeWeather();
+        }
 //        for (int i = 0; i < 5; i++) {
 //          weatherTower.changeWeather();
 //        }
