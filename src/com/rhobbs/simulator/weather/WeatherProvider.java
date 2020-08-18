@@ -64,7 +64,9 @@ public class WeatherProvider {
 
   private int getRandval(int max, int val) {
     int split = max / 10;
-    int rand;
+    if (val < 0) {
+      val *= -1;
+    }
     if (val < split) {
       return random.nextInt(2);
     } else if (val < split * 2) {
