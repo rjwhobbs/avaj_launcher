@@ -2,7 +2,6 @@ package com.rhobbs.simulator;
 
 import com.rhobbs.simulator.aircraft.AircraftFactory;
 import com.rhobbs.simulator.aircraft.Flyable;
-import com.rhobbs.simulator.weather.WeatherProvider;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,15 +12,12 @@ import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import java.util.regex.Pattern;
 
 public class Main {
-  public static List<Flyable> flyables = new ArrayList<>();
-  public static WeatherTower weatherTower = new WeatherTower();
-  private List<String[]> inputLine = new ArrayList<>();
-//  private static String[] inputArray;
-  public static String logFile = "simulation";
-  public static FileHandler fh;
+  private static List<Flyable> flyables = new ArrayList<>();
+  private static WeatherTower weatherTower = new WeatherTower();
+  private static String logFile = "simulation";
+  private static FileHandler fh;
 
   public static boolean isParsable(String input) {
     try {
@@ -56,6 +52,10 @@ public class Main {
         logger.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();
         fh.setFormatter(formatter);
+
+        if (args.length != 1) {
+          throw new Exception("Incorrect amount of arguments");
+        }
 
         BufferedReader reader = new BufferedReader(new FileReader(args[0]));
         String line = reader.readLine();
@@ -92,8 +92,6 @@ public class Main {
           flyables.add(flyable);
         }
 
-        WeatherProvider weatherProvider = WeatherProvider.getWeatherProvider();
-
         for (Flyable flyable: flyables) {
           flyable.registerTower(weatherTower);
         }
@@ -101,20 +99,23 @@ public class Main {
         for (int i = 0; i < simulationAmount; i++) {
           weatherTower.changeWeather();
         }
-
+        reader.close();
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
       } catch (IOException e) {
         System.out.println("IO error on file");
       } catch (Exception e) {
-        System.out.println("File contains an input error\n"+
-                "format:\n"+
-                "<simulation amount> (0 > n int) \n"+
-                "<aircraft type> (Balloon / JetPlane / Helicopter) "+
-                "<name> <long> (int) <lat> (int) <height> (positive int)");
+        if (e.getMessage() != null) {
+          System.out.println("Error: " + e.getMessage());
+        } else {
+          System.out.println("File contains an input error\n"+
+                  "format:\n"+
+                  "<simulation amount> (0 > n int) \n"+
+                  "<aircraft type> (Balloon / JetPlane / Helicopter) "+
+                  "<name> <long> (int) <lat> (int) <height> (positive int)");
+        }
       } finally {
         fh.close();
-        // reader.close();
       }
     }
 }

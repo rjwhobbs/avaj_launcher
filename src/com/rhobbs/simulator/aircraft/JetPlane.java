@@ -44,7 +44,7 @@ public class JetPlane extends Aircraft implements Flyable {
         break;
       default: break;
     }
-    Logger.getLogger(Main.logFile).info(
+    Logger.getLogger("simulation").info(
             this.type  + "#" + this.name +
             "(" + this.id + "): " + message);
     if (height > 100) {
@@ -53,12 +53,12 @@ public class JetPlane extends Aircraft implements Flyable {
       height = 0;
       this.coordinates = CoordinatesFactory.newCoordinates(lon, lat, height);
       this.weatherTower.unregister(this);
-      Logger.getLogger(Main.logFile).info(
+      Logger.getLogger("simulation").info(
             "Tower says: " + this.type + "#" + this.name +
                     "(" + this.id + ") unregistered from weather tower."
       );
       this.coordinates = CoordinatesFactory.newCoordinates(lon, lat, height);
-      Logger.getLogger(Main.logFile).info(
+      Logger.getLogger("simulation").info(
               this.type  + "#" + this.name +
                       "(" + this.id + ") landing."
       );
@@ -71,7 +71,7 @@ public class JetPlane extends Aircraft implements Flyable {
   public void registerTower(WeatherTower weatherTower) {
     this.weatherTower = weatherTower;
     this.weatherTower.register(this);
-    Logger.getLogger(Main.logFile).info(
+    Logger.getLogger("simulation").info(
             "Tower says: " + this.type + "#" + this.name +
                     "(" + this.id + ") registered to weather tower."
     );
