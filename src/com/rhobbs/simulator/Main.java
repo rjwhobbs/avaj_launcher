@@ -48,10 +48,6 @@ public class Main {
       try {
         System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
         Logger logger = Logger.getLogger(logFile);
-        fh = new FileHandler("./"+ logFile +".txt");
-        logger.addHandler(fh);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fh.setFormatter(formatter);
 
         if (args.length != 1) {
           throw new Exception("Incorrect amount of arguments");
@@ -92,6 +88,11 @@ public class Main {
           flyables.add(flyable);
         }
 
+        fh = new FileHandler("./"+ logFile +".txt");
+        logger.addHandler(fh);
+        SimpleFormatter formatter = new SimpleFormatter();
+        fh.setFormatter(formatter);
+
         for (Flyable flyable: flyables) {
           flyable.registerTower(weatherTower);
         }
@@ -115,7 +116,9 @@ public class Main {
                   "<name> <long> (int) <lat> (int) <height> (positive int)");
         }
       } finally {
-        fh.close();
+        if (fh != null) {
+          fh.close();
+        }
       }
     }
 }
