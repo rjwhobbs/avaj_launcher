@@ -44,7 +44,7 @@ public class Main {
     return  inputArray;
   }
 
-  public static void main(String[] args) /* throws InterruptedException */ {
+  public static void main(String[] args) {
       try {
         System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
         Logger logger = Logger.getLogger(logFile);

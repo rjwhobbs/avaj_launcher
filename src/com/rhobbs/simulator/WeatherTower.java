@@ -1,6 +1,5 @@
 package com.rhobbs.simulator;
 
-import com.rhobbs.simulator.aircraft.Flyable;
 import com.rhobbs.simulator.weather.Coordinates;
 import com.rhobbs.simulator.weather.WeatherProvider;
 

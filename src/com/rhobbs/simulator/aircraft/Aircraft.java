@@ -11,7 +11,6 @@ public abstract class Aircraft {
   private static long idCounter = 0;
 
   protected Aircraft(String name, Coordinates coordinates) {
-//    System.out.println("Aircraft con called");
     this.name = name;
     this.coordinates = coordinates;
     this.id = nextId();
