@@ -75,6 +75,7 @@ public class Helicopter extends Aircraft implements Flyable {
               this.type  + "#" + this.name +
                       "(" + this.id + ") landing."
       );
+      this.weatherTower.unregister(this);
       return ;
     }
     this.coordinates = CoordinatesFactory.newCoordinates(lon, lat, height);

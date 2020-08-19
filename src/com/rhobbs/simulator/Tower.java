@@ -29,21 +29,8 @@ public abstract class Tower {
 
   protected void conditionsChanged() {
     int i = 0;
-    int len = observers.size();
-    while (i < len) {
+    while (i < observers.size()) { // So it appears this size() is dynamic
       observers.get(i).updateConditions();
-//      System.out.println("Name: "+ observers.get(i).getName()
-//              +" Update called: Lo: "
-//              + observers.get(i).getCoordinates().getLongitude()
-//              +" La: "+ observers.get(i).getCoordinates().getLatitude()
-//              +" H: "+ observers.get(i).getCoordinates().getHeight()+
-//              "\n-----------------------------------------"
-//      );
-      if (observers.get(i).getCoordinates().getHeight() <= 0) {
-        unregister(observers.get(i));
-        i--;
-        len--;
-      }
       i++;
     }
 
