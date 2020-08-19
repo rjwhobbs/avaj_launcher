@@ -19,21 +19,30 @@ public class Main {
   public static List<Flyable> flyables = new ArrayList<>();
   public static WeatherTower weatherTower = new WeatherTower();
   private List<String[]> inputLine = new ArrayList<>();
-  private static String[] inputArray;
+//  private static String[] inputArray;
   public static String logFile = "simulation";
   public static FileHandler fh;
 
+  public static boolean isParsable(String input) {
+    try {
+      Integer.parseInt(input);
+      return true;
+    } catch (final NumberFormatException e) {
+      return false;
+    }
+  }
+
   private static String[] validateInput(String inputLine) throws Exception {
-    inputArray = inputLine.split(" ");
+    String[] inputArray = inputLine.split(" ");
     if (inputArray.length != 5) {
       throw new Exception();
     }
     if (!inputArray[0].equals("Balloon") && !inputArray[0].equals("Helicopter") && !inputArray[0].equals("JetPlane")) {
       throw new Exception();
     }
-    if (!Pattern.matches("^-?\\+?\\d+$", inputArray[2]) ||
-            !Pattern.matches("^-?\\+?\\d+$", inputArray[3]) ||
-            !Pattern.matches("^-?\\+?\\d+$", inputArray[4])) {
+    if (!Pattern.matches("^[-\\+]?\\d+$", inputArray[2]) ||
+            !Pattern.matches("^[-\\+]?\\d+$", inputArray[3]) ||
+            !Pattern.matches("^[-\\+]?\\d+$", inputArray[4])) {
       throw new Exception();
     }
     return  inputArray;
@@ -51,14 +60,17 @@ public class Main {
         BufferedReader reader = new BufferedReader(new FileReader(args[0]));
         String line = reader.readLine();
 
+        String simulationInput;
+        int simulationAmount;
         if (line != null) {
-          String[] strArr = line.split(" ");
+          if (line.split(" ").length > 1) {
+            throw new Exception();
+          }
+          simulationInput = line.split(" ")[0];
+          if (!Pattern.matches("^\\+?\\d+$", simulationInput)) {
+            throw new Exception();
+          }
         }
-
-//        while  ((line = reader.readLine()) != null) {
-//          arr = validateInput(line);
-//          System.out.println(arr[0] + arr[1] + arr[2] + arr[3] + arr[4]);
-//        }
 
         String[] arr;
         while ((line = reader.readLine()) != null) {
@@ -91,7 +103,7 @@ public class Main {
         System.out.println("IO error on file");
       } catch (Exception e) {
         System.out.println("File contains an input error");
-      }finally {
+      } finally {
         fh.close();
       }
     }
