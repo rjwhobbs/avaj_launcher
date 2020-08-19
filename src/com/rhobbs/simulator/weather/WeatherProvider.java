@@ -43,7 +43,7 @@ public class WeatherProvider {
     snow += getRandval(heightMaxRange, heightMaxRange - (coordinates.getHeight() % heightMaxRange));
     fog += getRandval(heightMaxRange, heightMaxRange - (coordinates.getHeight() % heightMaxRange));
 
-    System.out.println("Sn " +sun+" Sw "+snow+" R "+rain+" F "+fog);
+//    System.out.println("Sn " +sun+" Sw "+snow+" R "+rain+" F "+fog);
 
     for (int i = 0; i <= sun; i++) {
       randArr.add("sun");
@@ -58,7 +58,7 @@ public class WeatherProvider {
       randArr.add("fog");
     }
     weather = randArr.get(random.nextInt(randArr.size()));
-    System.out.println("weather: "+weather);
+//    System.out.println("weather: "+weather);
     return weather;
   }
 

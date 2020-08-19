@@ -40,9 +40,9 @@ public class Main {
     if (!inputArray[0].equals("Balloon") && !inputArray[0].equals("Helicopter") && !inputArray[0].equals("JetPlane")) {
       throw new Exception();
     }
-    if (!Pattern.matches("^[-\\+]?\\d+$", inputArray[2]) ||
-            !Pattern.matches("^[-\\+]?\\d+$", inputArray[3]) ||
-            !Pattern.matches("^[-\\+]?\\d+$", inputArray[4])) {
+    if (!isParsable(inputArray[2]) ||
+            !isParsable(inputArray[3]) ||
+            !isParsable(inputArray[4])) {
       throw new Exception();
     }
     return  inputArray;
@@ -61,26 +61,33 @@ public class Main {
         String line = reader.readLine();
 
         String simulationInput;
-        int simulationAmount;
+        int simulationAmount = 0;
         if (line != null) {
           if (line.split(" ").length > 1) {
             throw new Exception();
           }
           simulationInput = line.split(" ")[0];
-          if (!Pattern.matches("^\\+?\\d+$", simulationInput)) {
+          if (!isParsable(simulationInput)) {
+            throw new Exception();
+          }
+          simulationAmount = Integer.parseInt(simulationInput);
+          if (simulationAmount <= 0) {
             throw new Exception();
           }
         }
 
-        String[] arr;
+        String[] inputArr;
         while ((line = reader.readLine()) != null) {
-          arr = validateInput(line);
+          inputArr = validateInput(line);
+          if (Integer.parseInt(inputArr[4]) <= 0) {
+            throw new Exception();
+          }
           Flyable flyable = AircraftFactory.newAircraft(
-                  arr[0],
-                  arr[1],
-                  Integer.parseInt(arr[2]),
-                  Integer.parseInt(arr[3]),
-                  Integer.parseInt(arr[4])
+                  inputArr[0],
+                  inputArr[1],
+                  Integer.parseInt(inputArr[2]),
+                  Integer.parseInt(inputArr[3]),
+                  Integer.parseInt(inputArr[4])
           );
           flyables.add(flyable);
         }
@@ -91,18 +98,20 @@ public class Main {
           flyable.registerTower(weatherTower);
         }
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < simulationAmount; i++) {
           weatherTower.changeWeather();
         }
-//        for (int i = 0; i < 5; i++) {
-//          weatherTower.changeWeather();
-//        }
+
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
       } catch (IOException e) {
         System.out.println("IO error on file");
       } catch (Exception e) {
-        System.out.println("File contains an input error");
+        System.out.println("File contains an input error\n"+
+                "format:\n"+
+                "<simulation amount> (0 > n int) \n"+
+                "<aircraft type> (Balloon / JetPlane / Helicopter) "+
+                "<name> <long> (int) <lat> (int) <height> (positive int)");
       } finally {
         fh.close();
       }
