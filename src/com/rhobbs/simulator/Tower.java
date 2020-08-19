@@ -13,18 +13,18 @@ public abstract class Tower {
   public void register(Flyable flyable) {
 //    System.out.println(flyable.getName()+" registered with tower");
     observers.add(flyable);
-    Logger.getLogger(Main.logFile).info(
-            "Tower says: " + flyable.getType() + "#" + flyable.getName() +
-                    "(" + flyable.getId() + ") registered to weather tower."
-    );
+    // Logger.getLogger(Main.logFile).info(
+    //         "Tower says: " + flyable.getType() + "#" + flyable.getName() +
+    //                 "(" + flyable.getId() + ") registered to weather tower."
+    // );
   }
 
   public void unregister(Flyable flyable) {
     observers.remove(flyable);
-    Logger.getLogger(Main.logFile).info(
-            "Tower says: " + flyable.getType() + "#" + flyable.getName() +
-                    "(" + flyable.getId() + ") unregistered from weather tower."
-    );
+    // Logger.getLogger(Main.logFile).info(
+    //         "Tower says: " + flyable.getType() + "#" + flyable.getName() +
+    //                 "(" + flyable.getId() + ") unregistered from weather tower."
+    // );
   }
 
   protected void conditionsChanged() {

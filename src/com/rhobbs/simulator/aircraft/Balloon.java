@@ -17,22 +17,6 @@ public class Balloon extends Aircraft implements Flyable {
 //    System.out.println("Balloon name con called: " + this.name + "\nid: " + this.id);
   }
 
-  public long getId() {
-    return this.id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public String getType() {
-    return this.type;
-  }
-
-  public Coordinates getCoordinates() {
-    return this.coordinates;
-  }
-
   @Override
   public void updateConditions() {
     int lon = this.coordinates.getLongitude();
@@ -67,12 +51,16 @@ public class Balloon extends Aircraft implements Flyable {
       height = 100;
     } else if (height  <= 0) {
       height = 0;
+      this.weatherTower.unregister(this);
+      Logger.getLogger(Main.logFile).info(
+            "Tower says: " + this.type + "#" + this.name +
+                    "(" + this.id + ") unregistered from weather tower."
+      );
       this.coordinates = CoordinatesFactory.newCoordinates(lon, lat, height);
       Logger.getLogger(Main.logFile).info(
               this.type  + "#" + this.name +
                       "(" + this.id + ") landing."
       );
-      this.weatherTower.unregister(this);
       return ;
     }
     this.coordinates = CoordinatesFactory.newCoordinates(lon, lat, height);
@@ -82,5 +70,9 @@ public class Balloon extends Aircraft implements Flyable {
   public void registerTower(WeatherTower weatherTower) {
     this.weatherTower = weatherTower;
     this.weatherTower.register(this);
+    Logger.getLogger(Main.logFile).info(
+            "Tower says: " + this.type + "#" + this.name +
+                    "(" + this.id + ") registered to weather tower."
+    );
   }
 }
