@@ -38,7 +38,7 @@ public class Baloon extends Aircraft implements Flyable {
         break;
       case "snow":
         height -= 15;
-        message = "Baloons and snow don't mix!";
+        message = "I wonder if I can make a baloon man from this snow.";
         break;
       default: break;
     }

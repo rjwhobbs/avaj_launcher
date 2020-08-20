@@ -35,7 +35,7 @@ public class Helicopter extends Aircraft implements Flyable {
         break;
       case "fog":
         lon += 1;
-        message = "Can't see, at least I can fly in one place.";
+        message = "Can't see through this fog, at least I can fly in one place.";
         break;
       case "snow":
         height -= 12;
