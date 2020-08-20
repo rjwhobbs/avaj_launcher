@@ -60,6 +60,9 @@ public class Main {
         String simulationInput;
         int simulationAmount = 0;
         if (line != null) {
+          if (line.isEmpty()) {
+            throw new Exception("No empty lines.");
+          }
           if (line.split(" ").length != 1) {
             throw new Exception();
           }
@@ -77,6 +80,9 @@ public class Main {
 
         String[] inputArr;
         while ((line = reader.readLine()) != null) {
+          if (line.isEmpty()) {
+            throw new Exception("No empty lines.");
+          }
           inputArr = validateInput(line);
           if (Integer.parseInt(inputArr[4]) <= 0) {
             throw new Exception();
@@ -112,8 +118,7 @@ public class Main {
         if (e.getMessage() != null) {
           System.out.println("Error: " + e.getMessage());
         } else {
-          System.out.println("File empty or contains an input error\n"+
-                  "format:\n"+
+          System.out.println("File empty or contains an input error: format:\n"+
                   "<amount of simulations> (0 > int) \n"+
                   "<aircraft type> (Baloon / JetPlane / Helicopter) "+
                   "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
