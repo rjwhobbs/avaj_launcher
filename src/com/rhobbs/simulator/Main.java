@@ -112,7 +112,7 @@ public class Main {
         } else {
           System.out.println("File contains an input error\n"+
                   "format:\n"+
-                  "<simulation amount> (0 > int) \n"+
+                  "<amount of simulations> (0 > int) \n"+
                   "<aircraft type> (Balloon / JetPlane / Helicopter) "+
                   "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
         }

@@ -10,4 +10,5 @@ out/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-simulation.txt
+src/simulation.txt
+*.txt
