@@ -18,6 +18,7 @@ public class Main {
   private static WeatherTower weatherTower = new WeatherTower();
   private static String logFile = "simulation";
   private static FileHandler fh;
+  private static BufferedReader reader;
 
   public static boolean isParsable(String input) {
     try {
@@ -53,7 +54,7 @@ public class Main {
           throw new Exception("Incorrect amount of arguments");
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(args[0]));
+        reader = new BufferedReader(new FileReader(args[0]));
         String line = reader.readLine();
 
         String simulationInput;
@@ -100,7 +101,7 @@ public class Main {
         for (int i = 0; i < simulationAmount; i++) {
           weatherTower.changeWeather();
         }
-        reader.close();
+        
       } catch (FileNotFoundException e) {
         System.out.println(args[0] + " : File not found");
       } catch (IOException e) {
@@ -111,13 +112,20 @@ public class Main {
         } else {
           System.out.println("File contains an input error\n"+
                   "format:\n"+
-                  "<simulation amount> (0 > n int) \n"+
+                  "<simulation amount> (0 > int) \n"+
                   "<aircraft type> (Balloon / JetPlane / Helicopter) "+
-                  "<name> <long> (int) <lat> (int) <height> (positive int)");
+                  "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
         }
       } finally {
         if (fh != null) {
           fh.close();
+        }
+        if (reader != null) {
+          try {
+            reader.close();
+          } catch (IOException e) {
+            System.out.println("Error closing input read buffer.");
+          }
         }
       }
     }

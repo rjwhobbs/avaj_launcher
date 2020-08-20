@@ -13,7 +13,6 @@ public class Balloon extends Aircraft implements Flyable {
   Balloon(String name, Coordinates coordinates) {
     super(name, coordinates);
     this.type = "Balloon";
-//    System.out.println("Balloon name con called: " + this.name + "\nid: " + this.id);
   }
 
   @Override

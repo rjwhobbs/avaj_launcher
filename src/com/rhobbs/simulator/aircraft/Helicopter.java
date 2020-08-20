@@ -13,8 +13,6 @@ public class Helicopter extends Aircraft implements Flyable {
   Helicopter(String name, Coordinates coordinates) {
     super(name, coordinates);
     this.type = "Helicopter";
-//    System.out.println("Heli name con called: " + this.name + "\nid: " + this.id);
-//    super.showCoords();
   }
 
   @Override
