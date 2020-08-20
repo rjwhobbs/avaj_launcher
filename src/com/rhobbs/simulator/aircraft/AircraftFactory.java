@@ -7,8 +7,8 @@ public abstract class AircraftFactory implements Flyable {
     switch (type) {
       case "Helicopter":
         return new Helicopter(name, CoordinatesFactory.newCoordinates(longitude, latitude, height));
-      case "Balloon":
-        return new Balloon(name, CoordinatesFactory.newCoordinates(longitude, latitude, height));
+      case "Baloon":
+        return new Baloon(name, CoordinatesFactory.newCoordinates(longitude, latitude, height));
       case "JetPlane":
         return new JetPlane(name, CoordinatesFactory.newCoordinates(longitude, latitude, height));
       default: return null;

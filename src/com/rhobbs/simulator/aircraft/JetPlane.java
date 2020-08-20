@@ -30,7 +30,7 @@ public class JetPlane extends Aircraft implements Flyable {
         break;
       case "rain":
         lon += 5;
-        message = "Glad I took the jet today, that chop in the balloon is getting soaked.";
+        message = "Glad I took the jet today, that chop in the Baloon is getting soaked.";
         break;
       case "fog":
         lon += 1;

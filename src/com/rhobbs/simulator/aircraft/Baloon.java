@@ -6,13 +6,13 @@ import com.rhobbs.simulator.weather.CoordinatesFactory;
 
 import java.util.logging.Logger;
 
-public class Balloon extends Aircraft implements Flyable {
+public class Baloon extends Aircraft implements Flyable {
 
   private WeatherTower weatherTower;
 
-  Balloon(String name, Coordinates coordinates) {
+  Baloon(String name, Coordinates coordinates) {
     super(name, coordinates);
-    this.type = "Balloon";
+    this.type = "Baloon";
   }
 
   @Override
@@ -30,7 +30,7 @@ public class Balloon extends Aircraft implements Flyable {
         break;
       case "rain":
         height -= 5;
-        message = "Why did I take the balloon today, gonna get soaked.";
+        message = "Why did I take the Baloon today, gonna get soaked.";
         break;
       case "fog":
         height -= 3;
@@ -38,7 +38,7 @@ public class Balloon extends Aircraft implements Flyable {
         break;
       case "snow":
         height -= 15;
-        message = "Balloons and snow don't mix!";
+        message = "Baloons and snow don't mix!";
         break;
       default: break;
     }

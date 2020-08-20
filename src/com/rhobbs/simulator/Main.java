@@ -34,7 +34,7 @@ public class Main {
     if (inputArray.length != 5) {
       throw new Exception();
     }
-    if (!inputArray[0].equals("Balloon") && !inputArray[0].equals("Helicopter") && !inputArray[0].equals("JetPlane")) {
+    if (!inputArray[0].equals("Baloon") && !inputArray[0].equals("Helicopter") && !inputArray[0].equals("JetPlane")) {
       throw new Exception();
     }
     if (!isParsable(inputArray[2]) ||
@@ -60,7 +60,7 @@ public class Main {
         String simulationInput;
         int simulationAmount = 0;
         if (line != null) {
-          if (line.split(" ").length > 1) {
+          if (line.split(" ").length != 1) {
             throw new Exception();
           }
           simulationInput = line.split(" ")[0];
@@ -71,6 +71,8 @@ public class Main {
           if (simulationAmount <= 0) {
             throw new Exception();
           }
+        } else {
+          throw new Exception();
         }
 
         String[] inputArr;
@@ -110,10 +112,10 @@ public class Main {
         if (e.getMessage() != null) {
           System.out.println("Error: " + e.getMessage());
         } else {
-          System.out.println("File contains an input error\n"+
+          System.out.println("File empty or contains an input error\n"+
                   "format:\n"+
                   "<amount of simulations> (0 > int) \n"+
-                  "<aircraft type> (Balloon / JetPlane / Helicopter) "+
+                  "<aircraft type> (Baloon / JetPlane / Helicopter) "+
                   "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
         }
       } finally {

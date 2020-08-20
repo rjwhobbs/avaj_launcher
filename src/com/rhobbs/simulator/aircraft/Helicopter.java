@@ -31,7 +31,7 @@ public class Helicopter extends Aircraft implements Flyable {
         break;
       case "rain":
         lon += 5;
-        message = "Good thing I took the helicopter, look at that wet fool in the balloon.";
+        message = "Good thing I took the helicopter, look at that wet fool in the Baloon.";
         break;
       case "fog":
         lon += 1;
