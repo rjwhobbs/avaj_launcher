@@ -30,8 +30,8 @@ public class Main {
   }
 
   private static String[] validateInput(String inputLine) throws Exception {
-    String[] inputArray = inputLine.split(" ");
-    if (inputArray.length != 5) {
+    String[] inputArray = inputLine.split("\\s+");
+    if (inputArray.length != 5 ) {
       throw new Exception();
     }
     if (!inputArray[0].equals("Baloon") && !inputArray[0].equals("Helicopter") && !inputArray[0].equals("JetPlane")) {
@@ -42,7 +42,7 @@ public class Main {
             !isParsable(inputArray[4])) {
       throw new Exception();
     }
-    return  inputArray;
+    return inputArray;
   }
 
   public static void main(String[] args) {
@@ -63,10 +63,10 @@ public class Main {
           if (line.isEmpty()) {
             throw new Exception("No empty lines.");
           }
-          if (line.split(" ").length != 1) {
+          if (line.split("\\s+").length != 1) {
             throw new Exception();
           }
-          simulationInput = line.split(" ")[0];
+          simulationInput = line.split("\\s+")[0];
           if (!isParsable(simulationInput)) {
             throw new Exception();
           }
@@ -119,6 +119,7 @@ public class Main {
           System.out.println("Error: " + e.getMessage());
         } else {
           System.out.println("File empty or contains an input error: format:\n"+
+                  "(No leading or trailing spaces)\n"+
                   "<amount of simulations> (0 > int) \n"+
                   "<aircraft type> (Baloon / JetPlane / Helicopter) "+
                   "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
