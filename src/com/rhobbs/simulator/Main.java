@@ -49,6 +49,7 @@ public class Main {
       try {
         System.setProperty("java.util.logging.SimpleFormatter.format", "%5$s%n");
         Logger logger = Logger.getLogger(logFile);
+        logger.setUseParentHandlers(false);
 
         if (args.length != 1) {
           throw new Exception("Incorrect amount of arguments");
@@ -84,7 +85,9 @@ public class Main {
             throw new Exception("No empty lines.");
           }
           inputArr = validateInput(line);
-          if (Integer.parseInt(inputArr[4]) <= 0) {
+          if (Integer.parseInt(inputArr[4]) <= 0 ||
+              Integer.parseInt(inputArr[3]) <= 0 ||
+              Integer.parseInt(inputArr[2]) <= 0) {
             throw new Exception();
           }
           Flyable flyable = AircraftFactory.newAircraft(
@@ -122,7 +125,7 @@ public class Main {
                   "(No leading or trailing spaces)\n"+
                   "<amount of simulations> (0 > int) \n"+
                   "<aircraft type> (Baloon / JetPlane / Helicopter) "+
-                  "<name> (string) <long> (int) <lat> (int) <height> (0 > int)");
+                  "<name> (string) <long> (0 > int) <lat> (0 > int) <height> (0 > int)");
         }
       } finally {
         if (fh != null) {
