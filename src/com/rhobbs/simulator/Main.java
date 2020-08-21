@@ -80,9 +80,13 @@ public class Main {
         }
 
         String[] inputArr;
-        while ((line = reader.readLine()) != null) {
+        line = reader.readLine();
+        if (line == null || line.isEmpty()) {
+          throw new Exception("Empty lines or missing data.");
+        }
+        while (line != null) {
           if (line.isEmpty()) {
-            throw new Exception("No empty lines.");
+            throw new Exception("Empty lines or missing data.");
           }
           inputArr = validateInput(line);
           if (Integer.parseInt(inputArr[4]) <= 0 ||
@@ -98,6 +102,7 @@ public class Main {
                   Integer.parseInt(inputArr[4])
           );
           flyables.add(flyable);
+          line = reader.readLine();
         }
 
         fh = new FileHandler("./"+ logFile +".txt");
